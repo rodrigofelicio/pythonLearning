@@ -946,3 +946,189 @@
 #
 #
 
+#friends = ['Rolf', 'Jose', 'Randy', 'Anna', 'Mary']
+#start_with_r = filter(lambda friend: friend.startswith('R'), friends)
+
+#another_starts_with_r = (f for f in friends if f.startswith('R'))
+
+# When the people in our team are accustomed to using 'map'.
+#friends_lower = map(lambda x: x.lower(), friends)
+
+# If we need all the values to be in a list, then we can do this list comprehension below
+#friends_lower = [friend.lower for friend in friends]
+
+# The generator comprehension is the most used and recommended approach 
+# in comparison with the two above ones
+#friends_lower = (friends_lower for f in friends)
+
+#print(next(friends_lower))
+
+#class User:
+#    def __init__(self, username, password):
+#        self.username = username
+#        self.password = password
+#
+#    @classmethod
+#    def from_dict(cls, data):
+#        return cls(data['username'], data['password'])
+    
+#users = [
+#    { 'username': 'rolf', 'password': '123' }, 
+#    { 'username': 'tecladoisawesome', 'password': 'youaretoo' }
+#]
+
+#users = [User.from_dict(user) for user in users]
+#users = map(User.from_dict, users)
+
+#
+#########################################################################
+### The Any() and All() Functions in Python
+#########################################################################
+#
+#
+
+#friends = [
+#    {
+#        'name': 'Rolf',
+#        'location': 'Washington'
+#    },
+#    {
+#        'name': 'Anna',
+#        'location': 'San Francisco',
+#    },
+#    {
+#        'name': 'Charlie',
+#        'location': 'San Francisco'
+#    },
+#    {
+#        'name': 'Jose',
+#        'location': 'San Francisco'
+#    }
+#]
+
+#your_location = input('Where are you right now? ')
+#friends_nearby = [ friend for friend in friends if friend['location'] == your_location ]
+
+#if any(friends_nearby): # checks if ANY value is truthy. Returns True if there's at least one or false, if empty
+#    print('You are not alone!')
+#else:
+#    print('No one near you!')
+
+#print(all([0, 1, 2, 3, 4, 5])) # checks if ALL values are true. Returns False if any is not.
+    
+#""" 
+#* Here are some values that evaluate to false
+#* 0
+#* None
+#* [], (), {}
+#* False
+#"""
+#print(bool([]))
+
+#
+#########################################################################
+### Mutability in Python
+#########################################################################
+#
+#
+
+#friends_last_seen = {
+#    'Rolf': 31,
+#    'Jen': 1,
+#    'Anne': 7
+#}
+#print(id(friends_last_seen))
+
+#another_variable = friends_last_seen
+#print(id(another_variable)) #same memory address of friends_last_seen 
+
+# same content as the previous "friends_last_seen" function, but different dictionary
+# thus, different memory address, different objects.
+#friends_last_seen = { 
+#    'Rolf': 31,
+#    'Jen': 1,
+#    'Anne': 7
+#}
+#print(id(friends_last_seen))
+
+# At the code line below, although we change the content of the dictionary, 
+# we change the object content, we are not creating a new one.
+# 
+# Under the hood, Python is doing this:
+# friends_last_seen.__setitem__(self, 'Rolf')
+#friends_last_seen['Rolf'] = 0 
+#print(id(friends_last_seen))
+
+#On the other hand...
+#my_int = 5
+#print(id(my_int))
+
+#my_int = my_int + 1
+## The print function below is going to present a different memory address to my_int 
+## because integers are immutable
+#print(id(my_int)) 
+
+
+#Lists are mutable:
+#friends = ['Rolf', 'Jose']
+#print(id(friends)) # a memory address
+
+#friends.append('Jordan')
+# Below we have the same memory address as above. 
+# We changed the list, we did not create a new objec
+#print(id(friends))
+
+#""""
+#* Immutable types in python:
+#* integers -> all functions return new int objects
+#* floats
+#* strings
+#* tuples
+#"""
+
+#
+#########################################################################
+### Argument Mutability in Python
+#########################################################################
+#
+#
+
+#an example
+#friends_last_seen = { 
+#    'Rolf': 31,
+#    'Jen': 1,
+#    'Anne': 7
+#}
+
+#def see_friend(friends, name):
+#    friends[name] = 0
+#
+#
+#see_friend(friends_last_seen, 'Rolf')
+#print(friends_last_seen['Rolf'])
+#
+#########################
+#another example
+#age = 20
+#
+#def increase_age(current_age):
+#    print(f' The value of current_age is {current_age}') # this is going to print 20
+#    current_age = current_age + 1 # this curent_age now is 21, a different integer object than 20
+#    print(f' Now, the value of current_age is {current_age}')# this is going to print 21, not 20
+
+
+#print(id(age))
+#increase_age(age) 
+#print(id(age))
+
+#########################
+#one more example
+primes = [2, 3, 5]
+print(id(primes))
+print(primes)
+
+
+primes += [7, 11] # Python is doing this:  primes = primes.__iadd__([7, 11])
+primes = primes + [7, 11] # Python is doing this: primes = primes.__add__([7, 11])
+print(id(primes))
+print(primes)
