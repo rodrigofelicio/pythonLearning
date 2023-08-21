@@ -1070,19 +1070,65 @@
 
 
 #Lists are mutable:
-friends = ['Rolf', 'Jose']
-print(id(friends)) # a memory address
+#friends = ['Rolf', 'Jose']
+#print(id(friends)) # a memory address
 
-friends.append('Jordan')
+#friends.append('Jordan')
 # Below we have the same memory address as above. 
 # We changed the list, we did not create a new objec
-print(id(friends))
+#print(id(friends))
 
-""""
-* Immutable types in python:
-* integers -> all functions return new int objects
-* floats
-* strings
-* tuples
-"""
+#""""
+#* Immutable types in python:
+#* integers -> all functions return new int objects
+#* floats
+#* strings
+#* tuples
+#"""
 
+#
+#########################################################################
+### Argument Mutability in Python
+#########################################################################
+#
+#
+
+#an example
+#friends_last_seen = { 
+#    'Rolf': 31,
+#    'Jen': 1,
+#    'Anne': 7
+#}
+
+#def see_friend(friends, name):
+#    friends[name] = 0
+#
+#
+#see_friend(friends_last_seen, 'Rolf')
+#print(friends_last_seen['Rolf'])
+#
+#########################
+#another example
+#age = 20
+#
+#def increase_age(current_age):
+#    print(f' The value of current_age is {current_age}') # this is going to print 20
+#    current_age = current_age + 1 # this curent_age now is 21, a different integer object than 20
+#    print(f' Now, the value of current_age is {current_age}')# this is going to print 21, not 20
+
+
+#print(id(age))
+#increase_age(age) 
+#print(id(age))
+
+#########################
+#one more example
+primes = [2, 3, 5]
+print(id(primes))
+print(primes)
+
+
+primes += [7, 11] # Python is doing this:  primes = primes.__iadd__([7, 11])
+primes = primes + [7, 11] # Python is doing this: primes = primes.__add__([7, 11])
+print(id(primes))
+print(primes)
