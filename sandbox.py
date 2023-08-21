@@ -946,3 +946,81 @@
 #
 #
 
+#friends = ['Rolf', 'Jose', 'Randy', 'Anna', 'Mary']
+#start_with_r = filter(lambda friend: friend.startswith('R'), friends)
+
+#another_starts_with_r = (f for f in friends if f.startswith('R'))
+
+# When the people in our team are accustomed to using 'map'.
+#friends_lower = map(lambda x: x.lower(), friends)
+
+# If we need all the values to be in a list, then we can do this list comprehension below
+#friends_lower = [friend.lower for friend in friends]
+
+# The generator comprehension is the most used and recommended approach 
+# in comparison with the two above ones
+#friends_lower = (friends_lower for f in friends)
+
+#print(next(friends_lower))
+
+#class User:
+#    def __init__(self, username, password):
+#        self.username = username
+#        self.password = password
+#
+#    @classmethod
+#    def from_dict(cls, data):
+#        return cls(data['username'], data['password'])
+    
+#users = [
+#    { 'username': 'rolf', 'password': '123' }, 
+#    { 'username': 'tecladoisawesome', 'password': 'youaretoo' }
+#]
+
+#users = [User.from_dict(user) for user in users]
+#users = map(User.from_dict, users)
+
+#
+#########################################################################
+### The Any() and All() Functions in Python
+#########################################################################
+#
+#
+
+#friends = [
+#    {
+#        'name': 'Rolf',
+#        'location': 'Washington'
+#    },
+#    {
+#        'name': 'Anna',
+#        'location': 'San Francisco',
+#    },
+#    {
+#        'name': 'Charlie',
+#        'location': 'San Francisco'
+#    },
+#    {
+#        'name': 'Jose',
+#        'location': 'San Francisco'
+#    }
+#]
+
+#your_location = input('Where are you right now? ')
+#friends_nearby = [ friend for friend in friends if friend['location'] == your_location ]
+
+#if any(friends_nearby): # checks if ANY value is truthy. Returns True if there's at least one or false, if empty
+#    print('You are not alone!')
+#else:
+#    print('No one near you!')
+
+#print(all([0, 1, 2, 3, 4, 5])) # checks if ALL values are true. Returns False if any is not.
+    
+""" 
+* Here are some values that evaluate to false
+* 0
+* None
+* [], (), {}
+* False
+"""
+#print(bool([]))
