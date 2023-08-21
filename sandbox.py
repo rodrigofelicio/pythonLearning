@@ -1016,11 +1016,73 @@
 
 #print(all([0, 1, 2, 3, 4, 5])) # checks if ALL values are true. Returns False if any is not.
     
-""" 
-* Here are some values that evaluate to false
-* 0
-* None
-* [], (), {}
-* False
-"""
+#""" 
+#* Here are some values that evaluate to false
+#* 0
+#* None
+#* [], (), {}
+#* False
+#"""
 #print(bool([]))
+
+#
+#########################################################################
+### Mutability in Python
+#########################################################################
+#
+#
+
+#friends_last_seen = {
+#    'Rolf': 31,
+#    'Jen': 1,
+#    'Anne': 7
+#}
+#print(id(friends_last_seen))
+
+#another_variable = friends_last_seen
+#print(id(another_variable)) #same memory address of friends_last_seen 
+
+# same content as the previous "friends_last_seen" function, but different dictionary
+# thus, different memory address, different objects.
+#friends_last_seen = { 
+#    'Rolf': 31,
+#    'Jen': 1,
+#    'Anne': 7
+#}
+#print(id(friends_last_seen))
+
+# At the code line below, although we change the content of the dictionary, 
+# we change the object content, we are not creating a new one.
+# 
+# Under the hood, Python is doing this:
+# friends_last_seen.__setitem__(self, 'Rolf')
+#friends_last_seen['Rolf'] = 0 
+#print(id(friends_last_seen))
+
+#On the other hand...
+#my_int = 5
+#print(id(my_int))
+
+#my_int = my_int + 1
+## The print function below is going to present a different memory address to my_int 
+## because integers are immutable
+#print(id(my_int)) 
+
+
+#Lists are mutable:
+friends = ['Rolf', 'Jose']
+print(id(friends)) # a memory address
+
+friends.append('Jordan')
+# Below we have the same memory address as above. 
+# We changed the list, we did not create a new objec
+print(id(friends))
+
+""""
+* Immutable types in python:
+* integers -> all functions return new int objects
+* floats
+* strings
+* tuples
+"""
+
