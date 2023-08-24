@@ -1141,10 +1141,10 @@
 #
 
 #accounts global dictionary 
-accounts = {
-    'checking': 1958.00,
-    'savings': 3695.50
-}
+#accounts = {
+#    'checking': 1958.00,
+#    'savings': 3695.50
+#}
 
 #If we do not pass a account name to the function call, it will 
 #use the 'checking' account as default in order to process the amount
@@ -1152,13 +1152,65 @@ accounts = {
 # Another way of writing the default value of a function:
 # def add_balance(amount, name='checking')
 # the argument that has a default value must follow the argument that doesn't have it
-def add_balance(amount: float, name: str = 'checking') -> float:
-    """ Function to update the balance of an account and return the new balance. """
-    accounts[name] += amount
-    return accounts[name]    
+#def add_balance(amount: float, name: str = 'checking') -> float:
+#    """ Function to update the balance of an account and return the new balance. """
+#    accounts[name] += amount
+#    return accounts[name]    
 
 
-#add_balance(500.00, 'savings')
-add_balance(500.00) # this will use the default name value ('checking')
-print(accounts['checking'])
+##add_balance(500.00, 'savings')
+#add_balance(500.00) # this will use the default name value ('checking')
+#print(accounts['checking'])
 
+#
+#########################################################################
+### Mutable Default Arguments
+#########################################################################
+#
+# THIS IS WHAT WE WANT TO AVOID!!
+
+def create_account(name: str, holder: str, account_holders: list = []):
+    #print(id(account_holders))
+    account_holders.append(holder)
+    
+    return {
+        'name': name,
+        'main_account_holder': holder,
+        'account_holders': account_holders
+    }
+    
+a1 = create_account('checking', 'Rolf')
+a2 = create_account('savings', 'Jen')
+
+#print output: 
+#{'name': 'savings', 'main_account_holder': 'Jen', 'account_holders': ['Rolf', 'Jen']}
+# this ('account_holders': ['Rolf', 'Jen']) happens because the default argument for the
+# 'create_account' function gets evaluated when the function is defined, not when the function
+# is called. So the list argument and what it points to, by default, 
+# is the empty list object ( [] ). So the empty list object gets created when the function gets
+# created, not when the function is called.
+print(a2)  
+
+#Solving this empty list problem: 02 possibilities:
+#
+#01 - do not pass a default argument:
+#Function definition ->  def create_account(name: str, holder: str, account_holders: list):
+#function call with no default argument list -> create_account('checking', 'Rolf', [])
+#
+#02 - do not make account_holders a list, but make it equal to None:
+#Function definition -> def create_account(name: str, holder: str, account_holders = None):
+#Function implementation change:
+#def create_account(name: str, holder: str, account_holders: list = []):
+#   if not account_holders:
+#       account_holders = []
+#
+#    account_holders.append(holder)
+#    
+#    return {
+#        'name': name,
+#        'main_account_holder': holder,
+#        'account_holders': account_holders
+#    }
+#function call with argument as None -> create_account('checking', 'Rolf') , OR
+#function call with argument as None, but with a Default Argument in the call:
+#create_account('checking', 'Rolf', ['Johge'])
