@@ -1123,12 +1123,42 @@
 
 #########################
 #one more example
-primes = [2, 3, 5]
-print(id(primes))
-print(primes)
+#primes = [2, 3, 5]
+#print(id(primes))
+#print(primes)
 
 
-primes += [7, 11] # Python is doing this:  primes = primes.__iadd__([7, 11])
-primes = primes + [7, 11] # Python is doing this: primes = primes.__add__([7, 11])
-print(id(primes))
-print(primes)
+#primes += [7, 11] # Python is doing this:  primes = primes.__iadd__([7, 11])
+#primes = primes + [7, 11] # Python is doing this: primes = primes.__add__([7, 11])
+#print(id(primes))
+#print(primes)
+
+#
+#########################################################################
+### Default Values for Parameters
+#########################################################################
+#
+#
+
+#accounts global dictionary 
+accounts = {
+    'checking': 1958.00,
+    'savings': 3695.50
+}
+
+#If we do not pass a account name to the function call, it will 
+#use the 'checking' account as default in order to process the amount
+#in the accounts dictionary
+# Another way of writing the default value of a function:
+# def add_balance(amount, name='checking')
+# the argument that has a default value must follow the argument that doesn't have it
+def add_balance(amount: float, name: str = 'checking') -> float:
+    """ Function to update the balance of an account and return the new balance. """
+    accounts[name] += amount
+    return accounts[name]    
+
+
+#add_balance(500.00, 'savings')
+add_balance(500.00) # this will use the default name value ('checking')
+print(accounts['checking'])
+
