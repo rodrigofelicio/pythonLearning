@@ -1168,20 +1168,20 @@
 #########################################################################
 #
 # THIS IS WHAT WE WANT TO AVOID!!
-
-def create_account(name: str, holder: str, account_holders: list = []):
-    #print(id(account_holders))
-    account_holders.append(holder)
-    
-    return {
-        'name': name,
-        'main_account_holder': holder,
-        'account_holders': account_holders
-    }
-    
-a1 = create_account('checking', 'Rolf')
-a2 = create_account('savings', 'Jen')
-
+#
+#def create_account(name: str, holder: str, account_holders: list = []):
+#    #print(id(account_holders))
+#    account_holders.append(holder)
+#    
+#    return {
+#        'name': name,
+#        'main_account_holder': holder,
+#        'account_holders': account_holders
+#    }
+#    
+#a1 = create_account('checking', 'Rolf')
+#a2 = create_account('savings', 'Jen')
+#
 #print output: 
 #{'name': 'savings', 'main_account_holder': 'Jen', 'account_holders': ['Rolf', 'Jen']}
 # this ('account_holders': ['Rolf', 'Jen']) happens because the default argument for the
@@ -1189,7 +1189,7 @@ a2 = create_account('savings', 'Jen')
 # is called. So the list argument and what it points to, by default, 
 # is the empty list object ( [] ). So the empty list object gets created when the function gets
 # created, not when the function is called.
-print(a2)  
+#print(a2)  
 
 #Solving this empty list problem: 02 possibilities:
 #
@@ -1222,55 +1222,115 @@ print(a2)
 #########################################################################
 #
 #
+#
+#accounts = {
+#    'checking': 1958.00,
+#    'savings': 3695.50
+#}
+#
+#def add_balance(amount: float, name: str) -> float:
+#    accounts[name] += amount
+#    return accounts[name]
+#
+#
+#transactions = [
+#    (-180.67, 'checking'),
+#    (-220.00, 'checking'),
+#    (220.00, 'savings'),
+#    (-15.70, 'checking'),
+#    (-23.90, 'checking'),            
+#    (-13.00, 'checking'),            
+#    (1579.50, 'checking'),            
+#    (-600.50, 'checking'),            
+#    (600.50, 'savings'),
+#]
+#
+#for t in transactions:
+#    #add_balance(t[0], t[1]) #instead of this, python gives us a shorthand:
+#    add_balance(*t) # the '*t' unpacks iterable into arguments
+#    
+#    #named arguments:
+#    #add_balance(amount=t[0], name=t[1])
+#    #another unpacking: '**' - it unpacks a dictionary as named arguments to a function
+#    
+#class User:
+#    def __init__(self, username, password):
+#        self.username = username
+#        self.password = password
+#        
+## imagine these users are coming from a database...
+#users = [
+#    { 'username': 'rolf', 'password': '123'},
+#    { 'username': 'tecladoisawesome', 'password': 'youaretoo'}
+#]
+#
+##user_objects = [User(username=data['username'], password=data['password']) for data in users]
+## instead of doing the line above, we can do the line below (a named arguments/dictionary unpacking (**data)).
+#user_objects = [User(**data) for data in users]
+#
+#users = [
+#    ('rolf', '123'),
+#    ('tecladoisawesome', 'youaretoo')
+#]
+#
+##user_objects = [User(*data) for data in users]
 
-accounts = {
-    'checking': 1958.00,
-    'savings': 3695.50
-}
 
-def add_balance(amount: float, name: str) -> float:
-    accounts[name] += amount
-    return accounts[name]
+#
+#########################################################################
+### Some Interesting Python Collections
+#########################################################################
+#
+#
 
+"""
+* counter
+* defaultdict
+* ordereddict
+* namedtuple
+* deque
+"""
 
-transactions = [
-    (-180.67, 'checking'),
-    (-220.00, 'checking'),
-    (220.00, 'savings'),
-    (-15.70, 'checking'),
-    (-23.90, 'checking'),            
-    (-13.00, 'checking'),            
-    (1579.50, 'checking'),            
-    (-600.50, 'checking'),            
-    (600.50, 'savings'),
-]
+#from collections import Counter
+#
+#device_temperatures = [13.5, 14.0, 14.0, 14.5, 14.5, 14.5, 15.0, 16.0]
+#
+#temperature_counter = Counter(device_temperatures)
+#print(temperature_counter[14.5])
+#
+###################
+#from collections import defaultdict
+#
+#coworkers = [('Rolf', 'MIT'), ('Jen', 'Oxford'), ('Rolf', 'Cambridge'), ('Charlie', 'Manchester')]
+#
+#alma_maters = defaultdict(list)
+#
+#for coworker, place in coworkers:
+#    alma_maters[coworker].append(place)
+#    
+##In order to handle errors, consider 'None' for the default_factory (below). 
+##It will raise a traceback error in case a value is not in tuple list, 
+##while 'int' will raise the int number so it can be handled in a exception block 
+#alma_maters.default_factory = None 
+#   
+#print(alma_maters['Rolf'])
+#print(alma_maters['Anne'])
 
-for t in transactions:
-    #add_balance(t[0], t[1]) #instead of this, python gives us a shorthand:
-    add_balance(*t) # the '*t' unpacks iterable into arguments
-    
-    #named arguments:
-    #add_balance(amount=t[0], name=t[1])
-    #another unpacking: '**' - it unpacks a dictionary as named arguments to a function
-    
-class User:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-        
-# imagine these users are coming from a database...
-users = [
-    { 'username': 'rolf', 'password': '123'},
-    { 'username': 'tecladoisawesome', 'password': 'youaretoo'}
-]
-
-#user_objects = [User(username=data['username'], password=data['password']) for data in users]
-# instead of doing the line above, we can do the line below (a named arguments/dictionary unpacking (**data)).
-user_objects = [User(**data) for data in users]
-
-users = [
-    ('rolf', '123'),
-    ('tecladoisawesome', 'youaretoo')
-]
-
-user_objects = [User(*data) for data in users]
+###################
+#from collections import defaultdict
+#my_company = 'Teclado'
+#
+#coworkers = ['Jen', 'Li', 'Charlie', 'Rhys']
+#other_coworkers = [('Rolf', 'Apple Inc.'), ('Anna', 'Google')]
+#
+#coworker_companies = defaultdict(lambda: my_company)
+#
+#for coworker in coworkers:
+#    coworker_companies[coworker]
+#
+#for person, company in other_coworkers:
+#    coworker_companies[person] = company
+#
+##print(coworker_companies[coworkers[1]])
+##print(coworker_companies['Rolf'])
+#print(coworker_companies)
