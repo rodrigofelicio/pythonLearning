@@ -1214,3 +1214,63 @@ print(a2)
 #function call with argument as None -> create_account('checking', 'Rolf') , OR
 #function call with argument as None, but with a Default Argument in the call:
 #create_account('checking', 'Rolf', ['Johge'])
+
+
+#
+#########################################################################
+### Argument Unpacking in Python
+#########################################################################
+#
+#
+
+accounts = {
+    'checking': 1958.00,
+    'savings': 3695.50
+}
+
+def add_balance(amount: float, name: str) -> float:
+    accounts[name] += amount
+    return accounts[name]
+
+
+transactions = [
+    (-180.67, 'checking'),
+    (-220.00, 'checking'),
+    (220.00, 'savings'),
+    (-15.70, 'checking'),
+    (-23.90, 'checking'),            
+    (-13.00, 'checking'),            
+    (1579.50, 'checking'),            
+    (-600.50, 'checking'),            
+    (600.50, 'savings'),
+]
+
+for t in transactions:
+    #add_balance(t[0], t[1]) #instead of this, python gives us a shorthand:
+    add_balance(*t) # the '*t' unpacks iterable into arguments
+    
+    #named arguments:
+    #add_balance(amount=t[0], name=t[1])
+    #another unpacking: '**' - it unpacks a dictionary as named arguments to a function
+    
+class User:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        
+# imagine these users are coming from a database...
+users = [
+    { 'username': 'rolf', 'password': '123'},
+    { 'username': 'tecladoisawesome', 'password': 'youaretoo'}
+]
+
+#user_objects = [User(username=data['username'], password=data['password']) for data in users]
+# instead of doing the line above, we can do the line below (a named arguments/dictionary unpacking (**data)).
+user_objects = [User(**data) for data in users]
+
+users = [
+    ('rolf', '123'),
+    ('tecladoisawesome', 'youaretoo')
+]
+
+user_objects = [User(*data) for data in users]
