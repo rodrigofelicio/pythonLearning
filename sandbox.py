@@ -1370,14 +1370,47 @@
 #print(accountNamedTuple._asdict()['balance']) #1850.90
 
 ###################
+#
+#from collections import deque
+#
+#friends = deque(('Rolf', 'Charlie', 'Jen', 'Anna'))
+#friends.append('Jose')
+#friends.appendleft('Anthony')
+#print(friends)
+#
+#friends.pop()
+#friends.popleft()
+#print(friends)
 
-from collections import deque
+#
+#########################################################################
+### Timezones - Dates and Time in Python
+#########################################################################
+#
+#
 
-friends = deque(('Rolf', 'Charlie', 'Jen', 'Anna'))
-friends.append('Jose')
-friends.appendleft('Anthony')
-print(friends)
+#from datetime import datetime, timezone, timedelta
+#
+#print(datetime.now()) # naive time (don't know the timezone)
+##Our program should always work with UTC time. Then, when presenting it to the user, convert it.
+#print(datetime.now(timezone.utc))  
+#
+#today = datetime.now(timezone.utc)
+#tomorrow = today + timedelta(days=1)
+#
+#print(today)
+#print(tomorrow)
+#
+#print(today.strftime('%d-%m-%Y %H:%M'))
+#
+#user_date = input('Enter the date in YYYY-mm-dd format: ')
+#user_date = datetime.strptime(user_date, '%Y-%m-%d') #strint parse time
+#print(user_date)
 
-friends.pop()
-friends.popleft()
-print(friends)
+#
+#########################################################################
+### Timing Your Code in Python
+#########################################################################
+#
+#
+
