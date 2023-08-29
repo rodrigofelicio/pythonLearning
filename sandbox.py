@@ -1334,3 +1334,100 @@
 ##print(coworker_companies[coworkers[1]])
 ##print(coworker_companies['Rolf'])
 #print(coworker_companies)
+
+
+###################
+#from collections import OrderedDict
+#
+#o = OrderedDict()
+#o['Rolf'] = 6
+#o['Jose'] = 12
+#o['Jen'] = 3
+#print(o)
+#
+#o.move_to_end('Rolf')
+#o.move_to_end('Jen', last=False)
+#print(o)
+#
+#o.popitem() #remove an item from the end of the dict/list
+#print(o)
+
+###################
+#from collections import namedtuple
+#
+#account = ('checking', 1850.90)
+#
+##print(account[0]) # name
+##print(account[1]) # balance
+#
+#Account = namedtuple('Account', ['name', 'balance'])
+#account = Account('checking', balance=1850.90)
+##account = Account('checking', 1850.90) # positioning arg('checking') and named arg ('balance')
+#print(account.name)
+#print(account)
+#
+#accountNamedTuple = Account(*account)
+#print(accountNamedTuple._asdict()['balance']) #1850.90
+
+###################
+#
+#from collections import deque
+#
+#friends = deque(('Rolf', 'Charlie', 'Jen', 'Anna'))
+#friends.append('Jose')
+#friends.appendleft('Anthony')
+#print(friends)
+#
+#friends.pop()
+#friends.popleft()
+#print(friends)
+
+#
+#########################################################################
+### Timezones - Dates and Time in Python
+#########################################################################
+#
+#
+
+#from datetime import datetime, timezone, timedelta
+#
+#print(datetime.now()) # naive time (don't know the timezone)
+##Our program should always work with UTC time. Then, when presenting it to the user, convert it.
+#print(datetime.now(timezone.utc))  
+#
+#today = datetime.now(timezone.utc)
+#tomorrow = today + timedelta(days=1)
+#
+#print(today)
+#print(tomorrow)
+#
+#print(today.strftime('%d-%m-%Y %H:%M'))
+#
+#user_date = input('Enter the date in YYYY-mm-dd format: ')
+#user_date = datetime.strptime(user_date, '%Y-%m-%d') #strint parse time
+#print(user_date)
+
+#
+#########################################################################
+### Timing Your Code in Python
+#########################################################################
+#
+#
+#
+#import time
+#
+#def measure_runtime(func):
+#    start = time.time()
+#    func()
+#    end = time.time()
+#    print(end - start)
+#    
+#def powers(limit):
+#    return [x**2 for x in range(limit)]
+#
+#measure_runtime(lambda: powers(5000000))
+#
+#import timeit
+#print(timeit.timeit("[x**2 for x in range(10)]"))
+#print(timeit.timeit("list(map(lambda x: x**2, range(10)))"))
+      
