@@ -1334,3 +1334,50 @@
 ##print(coworker_companies[coworkers[1]])
 ##print(coworker_companies['Rolf'])
 #print(coworker_companies)
+
+
+###################
+#from collections import OrderedDict
+#
+#o = OrderedDict()
+#o['Rolf'] = 6
+#o['Jose'] = 12
+#o['Jen'] = 3
+#print(o)
+#
+#o.move_to_end('Rolf')
+#o.move_to_end('Jen', last=False)
+#print(o)
+#
+#o.popitem() #remove an item from the end of the dict/list
+#print(o)
+
+###################
+#from collections import namedtuple
+#
+#account = ('checking', 1850.90)
+#
+##print(account[0]) # name
+##print(account[1]) # balance
+#
+#Account = namedtuple('Account', ['name', 'balance'])
+#account = Account('checking', balance=1850.90)
+##account = Account('checking', 1850.90) # positioning arg('checking') and named arg ('balance')
+#print(account.name)
+#print(account)
+#
+#accountNamedTuple = Account(*account)
+#print(accountNamedTuple._asdict()['balance']) #1850.90
+
+###################
+
+from collections import deque
+
+friends = deque(('Rolf', 'Charlie', 'Jen', 'Anna'))
+friends.append('Jose')
+friends.appendleft('Anthony')
+print(friends)
+
+friends.pop()
+friends.popleft()
+print(friends)
