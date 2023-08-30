@@ -1430,4 +1430,50 @@
 #import timeit
 #print(timeit.timeit("[x**2 for x in range(10)]"))
 #print(timeit.timeit("list(map(lambda x: x**2, range(10)))"))
-      
+
+#
+#########################################################################
+### Regular Expressions (RegEx) in Python
+#########################################################################
+#
+#
+
+#import re #regular expression module
+
+## Example 01
+#email = 'jose@tecladocode.com'
+#expression = '[a-z\.]+'
+#
+#matches = re.findall(expression, email)
+#print(matches)
+#
+#name = matches[0]
+#domain = matches[1]
+#domain = f'{matches[1]}.{matches[2]}'
+#
+#print(name)
+#print(domain)
+##############
+## Example 02
+#
+#email = 'jose@tecladocode.com'
+#parts = email.split('@')
+#
+#name = parts[0]
+#domain = parts[1]
+#
+#print(parts)
+#print(name)
+#print(domain)
+##############
+## Example 03
+#price = 'Price: $189.50'
+#expression = 'Price: \$([0-9,]*\.[0-9]*)'
+#
+#matches = re.search(expression, price)
+#print(matches.group(0))
+#print(matches.group(1))
+#
+#price_without_comma = matches.group(1).replace(',', '')
+#price_number = float(price_without_comma)
+#print(price_number)
