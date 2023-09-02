@@ -1,0 +1,4 @@
+02-09-2023 08:40:34 INFO     [sandbox.py:1527] This will not show up.
+02-09-2023 08:40:34 WARNING  [sandbox.py:1528] This will.
+02-09-2023 08:40:34 DEBUG    [sandbox.py:1529] This is a debug message.
+02-09-2023 08:40:34 CRITICAL [sandbox.py:1530] A critical error occurred.

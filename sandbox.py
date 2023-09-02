@@ -1484,25 +1484,25 @@
 #########################################################################
 #
 #
-
-"""
-LOGGING LEVELS:
-DEBUG
-INFO
-WARNING
-ERROR
-CRITICAL
-"""
-
-import logging
-
-logger = logging.getLogger('test_logger')
-# logging pattern configuration. 
-logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s', level=logging.DEBUG) # 'the lowest level expected'
-logger.info('This will not show up')
-logger.warning('This will.')
-logger.debug('This is a debug message.')
-logger.critical('A critical error occurred.')
+#
+#"""
+#LOGGING LEVELS:
+#DEBUG
+#INFO
+#WARNING
+#ERROR
+#CRITICAL
+#"""
+#
+#import logging
+#
+#logger = logging.getLogger('test_logger')
+## logging pattern configuration. 
+#logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s', level=logging.DEBUG) # 'the lowest level expected'
+#logger.info('This will not show up')
+#logger.warning('This will.')
+#logger.debug('This is a debug message.')
+#logger.critical('A critical error occurred.')
 
 
 #
@@ -1511,4 +1511,21 @@ logger.critical('A critical error occurred.')
 #########################################################################
 #
 #
+import logging
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+    datefmt='%d-%m-%Y %H:%M:%S',
+    level=logging.DEBUG,
+    filename='logs.txt'
+)
+logger = logging.getLogger('test_logger')
+#logger = logging.getLogger(__name__)
+#logger = logging.getLogger('books')
+#logger = logging.getLogger('books.database') #child logger
+
+logger.info('This will not show up.')
+logger.warning('This will.')
+logger.debug('This is a debug message.')
+logger.critical('A critical error occurred.')
 
