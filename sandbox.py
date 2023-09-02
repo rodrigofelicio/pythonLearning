@@ -1477,3 +1477,38 @@
 #price_without_comma = matches.group(1).replace(',', '')
 #price_number = float(price_without_comma)
 #print(price_number)
+
+#
+#########################################################################
+### Introduction to Logging in Python
+#########################################################################
+#
+#
+
+"""
+LOGGING LEVELS:
+DEBUG
+INFO
+WARNING
+ERROR
+CRITICAL
+"""
+
+import logging
+
+logger = logging.getLogger('test_logger')
+# logging pattern configuration. 
+logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s', level=logging.DEBUG) # 'the lowest level expected'
+logger.info('This will not show up')
+logger.warning('This will.')
+logger.debug('This is a debug message.')
+logger.critical('A critical error occurred.')
+
+
+#
+#########################################################################
+### Logging to a File and Other Features
+#########################################################################
+#
+#
+
