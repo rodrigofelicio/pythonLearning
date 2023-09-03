@@ -1484,25 +1484,25 @@
 #########################################################################
 #
 #
-
-"""
-LOGGING LEVELS:
-DEBUG
-INFO
-WARNING
-ERROR
-CRITICAL
-"""
-
-import logging
-
-logger = logging.getLogger('test_logger')
-# logging pattern configuration. 
-logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s', level=logging.DEBUG) # 'the lowest level expected'
-logger.info('This will not show up')
-logger.warning('This will.')
-logger.debug('This is a debug message.')
-logger.critical('A critical error occurred.')
+#
+#"""
+#LOGGING LEVELS:
+#DEBUG
+#INFO
+#WARNING
+#ERROR
+#CRITICAL
+#"""
+#
+#import logging
+#
+#logger = logging.getLogger('test_logger')
+## logging pattern configuration. 
+#logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s', level=logging.DEBUG) # 'the lowest level expected'
+#logger.info('This will not show up')
+#logger.warning('This will.')
+#logger.debug('This is a debug message.')
+#logger.critical('A critical error occurred.')
 
 
 #
@@ -1511,4 +1511,60 @@ logger.critical('A critical error occurred.')
 #########################################################################
 #
 #
+#import logging
+#
+#logging.basicConfig(
+#    format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+#    datefmt='%d-%m-%Y %H:%M:%S',
+#    level=logging.DEBUG,
+#    filename='logs.txt'
+#)
+#logger = logging.getLogger('test_logger')
+##logger = logging.getLogger(__name__)
+##logger = logging.getLogger('books')
+##logger = logging.getLogger('books.database') #child logger
+#
+#logger.info('This will not show up.')
+#logger.warning('This will.')
+#logger.debug('This is a debug message.')
+#logger.critical('A critical error occurred.')
 
+
+#
+#########################################################################
+### Higher-order Functions in Python
+#########################################################################
+#
+#
+
+def greet():
+    print("Hello")
+
+def before_and_after(func):
+    print("Before...")
+    func()
+    print("After...")
+    
+#before_and_after(lambda: 5)
+before_and_after(greet)
+
+movies = [
+    {"name": "The Matrix", "director": "Wachowski"},
+    {"name": "A Beautiful Day in the Neighborhood", "director": "Heller"},
+    {"name": "The Irishman", "director": "Scorsese"},
+    {"name": "Klaus", "director": "Pablos"}, 
+    {"name": "1917", "director": "Mendes"},
+]      
+
+def find_movie(expected, finder):
+    found = []
+    for movie in movies:
+        if finder(movie) == expected:
+            found.append(movie)
+    return found
+
+find_by = input("What property are we searching by? ")
+looking_for = input("What are you looking for? ")
+
+movie = find_movie(looking_for, lambda movie: movie[find_by])
+print(movie or 'No movies found.')
